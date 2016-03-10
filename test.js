@@ -12,6 +12,7 @@ describe('/api/v1', () => {
       app.get('/api/v1/checks')
         .expect(200)
         .expect('access-control-allow-origin', '*')
+        .expect('content-type', 'application/json; charset=utf-8')
         .expect(res => {
           assert.equal(typeof res.body.checks, 'object');
           assert.deepEqual(res.body.counts, {
@@ -19,6 +20,10 @@ describe('/api/v1', () => {
             limited: 12,
             filtered: 12,
           });
+
+          for (const check of res.body.checks) {
+            assert(check.tags instanceof Array);
+          }
         })
         .end(done);
     });
