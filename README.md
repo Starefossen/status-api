@@ -1,49 +1,34 @@
-# Slack Jira
+# Service Status API
 
-![Slack Jira In Action](https://raw.githubusercontent.com/Starefossen/slack-jira/master/slack-jira.gif)
+[![Build status](https://img.shields.io/wercker/ci/56e1de0b8b8eccd53600aa8c.svg "Build status")](https://app.wercker.com/project/bykey/a9dbc41d2e608c70fbfbd5ec57c50db0)
+[![NPM downloads](https://img.shields.io/npm/dm/@starefossen/status-api.svg "NPM downloads")](https://www.npmjs.com/package/@starefossen/status-api)
+[![NPM version](https://img.shields.io/npm/v/@starefossen/status-api.svg "NPM version")](https://www.npmjs.com/package/@starefossen/status-api)
+[![Node version](https://img.shields.io/node/v/@starefossen/status-api.svg "Node version")](https://www.npmjs.com/package/@starefossen/status-api)
+[![Dependency status](https://img.shields.io/david/Starefossen/status-api.svg "Dependency status")](https://david-dm.org/Starefossen/status-api)
 
-## Features
+Microservice for returning the status of various services monitored through
+Pingdom. Using the Pingdom API under the hood.
 
-Manage Jira issues directly from Slack.
+## Requirements
 
-* [x] Create Bugs, Tasks, and Stories
-* [x] Assign issues to yourself, or team members
-* [x] Transition issues between Todo, In Progress, or Done
-* [ ] Add issues to current sprint
-* [ ] List issues in current sprint
-* [ ] Link issues to Slack history
+* Node.JS >= v4.0.0
 
-## Test
-
-```
-$ npm test
-```
-
-## Install and Run
+## Start
 
 ```
-$ docker pull starefossen/slack-jira
-$ docker run -e ... -p 8080:8080 starefossen/slack-jira
+npm start
 ```
 
-### Environment Variables
+### Environment
 
-| Variable | Description |
-|----------|-------------|
-| JIRA_URL | Complete URL to your JIRA installation |
-| JIRA_USER | JIRA API user |
-| JIRA_PASS | JIRA API password |
-| JIRA_DEFAULT_PROJECT | Default project for new issues |
-| JIRA_DEFAULT_RAPIDVIEW | Default Rapid View for Sprint items |
-| JIRA_USERS | Slack to JIRA user translation |
-| SLACK_TOKENS | List of valid Slack tokens (comma seperated) |
+* `PINGDOM_KEY` - Pingdom API app key
+* `PINGDOM_USER` - Pingdom user
+* `PINGDOM_PASS` - Pingdom password
 
-### Jira Users
+## API
 
-The list of Slack to Jira user translation should be on the following format:
+| Method | Path             | Desc                  |
+|--------|------------------|-----------------------|
+| `GET`  | `/api/v1/checks` | Get all status checks |
 
-```
-<slack-user-name>@<jira-user-name>[,...]
-```
-
-## [MIT Licensed](https://github.com/Starefossen/slack-jira/blob/master/LICENSE)
+## [MIT Licensed](https://github.com/Starefossen/status-api/blob/master/LICENSE)
